@@ -44,21 +44,25 @@
       box-sizing: border-box;
     }
 
+    html {
+      min-height: 100%;
+      background: url('mobile.png') center bottom/cover no-repeat fixed;
+    }
+
     body {
       font-family: 'Crimson Pro', Georgia, serif;
       text-align: center;
-      min-height: 100dvh;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       padding: 40px 20px;
-      background: url('mobile.png') center bottom/cover no-repeat;
       color: #2D2D5F;
     }
 
     @media (min-width: 768px) {
-      body {
+      html {
         background-image: url('desktop.png');
       }
     }
