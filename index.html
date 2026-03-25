@@ -55,7 +55,6 @@
       min-height: 100dvh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
       padding: 40px 20px;
       color: #2D2D5F;
@@ -70,6 +69,7 @@
     .container {
       max-width: 400px;
       width: 100%;
+      margin: auto 0;
     }
 
     h1 {
@@ -140,6 +140,26 @@
       height: auto;
     }
 
+    .footer {
+      margin-top: 40px;
+      padding: 24px 20px 28px;
+      font-size: 1rem;
+      opacity: 0.8;
+    }
+
+    .footer a {
+      color: #2D2D5F;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    .footer .separator {
+      margin: 0 8px;
+    }
+
   </style>
 </head>
 <body>
@@ -164,6 +184,14 @@
         <img src="GetItOnGooglePlay_Badge_Web_color_English.svg" alt="Get it on Google Play">
       </a>
     </div>
+
+    <footer class="footer">
+    <a href="/terms">Terms of Service</a>
+    <span class="separator">&middot;</span>
+    <a href="/privacy">Privacy Policy</a>
+    <span class="separator">&middot;</span>
+    <a href="/stillful_support">Support</a>
+    </footer>
   </div>
 </body>
 </html>
