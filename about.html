@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About Us | stillful</title>
+  <meta name="description" content="Meet the people behind stillful.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: 'Crimson Pro', Georgia, serif;
+      color: #2D2D5F;
+      background:
+        radial-gradient(circle at top, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.76) 38%, rgba(232, 241, 248, 0.88) 100%),
+        linear-gradient(180deg, #f4f1eb 0%, #e7eef5 100%);
+      padding: 48px 20px 32px;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .page-title {
+      font-size: 3.5rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: lowercase;
+      margin-bottom: 20px;
+      opacity: 0.82;
+    }
+
+    .team-list {
+      display: grid;
+      gap: 20px;
+    }
+
+    .person-card {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 20px;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(45, 45, 95, 0.08);
+      border-radius: 24px;
+      padding: 22px;
+      box-shadow: 0 18px 40px rgba(45, 45, 95, 0.08);
+      backdrop-filter: blur(8px);
+    }
+
+    .portrait {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      background: #dce5ef;
+      border: 3px solid rgba(45, 45, 95, 0.08);
+    }
+
+    .person-name {
+      font-size: 2rem;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .person-bio {
+      font-size: 1.2rem;
+      line-height: 1.55;
+      opacity: 0.95;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 36px;
+      padding-top: 12px;
+      font-size: 1rem;
+      opacity: 0.82;
+    }
+
+    .footer a {
+      color: #2D2D5F;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    .footer .separator {
+      margin: 0 8px;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 32px 16px 24px;
+      }
+
+      .person-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+        justify-items: center;
+        padding: 20px 18px;
+      }
+
+      .portrait {
+        width: 128px;
+        height: 128px;
+      }
+
+      .person-name {
+        font-size: 1.8rem;
+      }
+
+      .person-bio {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <p class="page-title">about us</p>
+
+    <section class="team-list" aria-label="Stillful team">
+      <article class="person-card">
+        <img
+          class="portrait"
+          src="images/IMG_2873.png"
+          alt="Fil Chelarescu"
+        >
+        <div>
+          <h2 class="person-name">Fil Chelarescu</h2>
+          <p class="person-bio">Fil studied Computer Science at Cornell University and worked at Microsoft for 12 years. A meditator since his teenage years, he recently tried retiring early and found that building things that help people is way more fun.</p>
+        </div>
+      </article>
+
+      <article class="person-card">
+        <img class="portrait" src="images/fanny_placeholder.svg" alt="Fanny Le Blanchard">
+        <div>
+          <h2 class="person-name">Fanny Le Blanchard</h2>
+          <p class="person-bio">Fanny is a tattoo artist and designer living in Paris. She was born in Vietnam and spent years as a digital nomad in Southeast Asia.</p>
+        </div>
+      </article>
+
+      <article class="person-card">
+        <img class="portrait" src="images/sam_placeholder.svg" alt="Sam Erulkar">
+        <div>
+          <h2 class="person-name">Sam Erulkar</h2>
+          <p class="person-bio">Sam is studying Music at NYU. Originally from Chicago, his tunes were shown at Cannes Film Festival and the Toronto International Film Festival.</p>
+        </div>
+      </article>
+    </section>
+
+    <footer class="footer">
+      <a href="index.html">Home</a>
+      <span class="separator">&middot;</span>
+      <a href="/terms">Terms of Service</a>
+      <span class="separator">&middot;</span>
+      <a href="/privacy">Privacy Policy</a>
+      <span class="separator">&middot;</span>
+      <a href="/stillful_support">Support</a>
+    </footer>
+  </main>
+</body>
+</html>

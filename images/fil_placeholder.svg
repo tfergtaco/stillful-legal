@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="title desc">
+  <title id="title">Fil placeholder portrait</title>
+  <desc id="desc">A placeholder portrait with the initials FC.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e9d7c4"/>
+      <stop offset="100%" stop-color="#d4e3f2"/>
+    </linearGradient>
+  </defs>
+  <rect width="240" height="240" rx="120" fill="url(#bg)"/>
+  <circle cx="120" cy="98" r="42" fill="#f7f1ea"/>
+  <path d="M48 206c18-40 49-60 72-60s54 20 72 60" fill="#f7f1ea"/>
+  <text x="120" y="222" text-anchor="middle" font-family="Georgia, serif" font-size="28" fill="#2D2D5F" letter-spacing="3">FC</text>
+</svg>
