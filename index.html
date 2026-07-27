@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>stillful</title>
-  <meta name="description" content="stillful - A meditation app for finding peace in the present moment. Download on iOS and Android.">
+  <title>stillful — Mindfulness without distractions</title>
+  <meta name="description" content="Mindfulness without distractions. Free meditation, breathwork and mindful stories. Download stillful on iOS and Android.">
 
   <!-- Open Graph / Social sharing -->
-  <meta property="og:title" content="stillful - Meditation Made Simple">
-  <meta property="og:description" content="A meditation app for finding peace in the present moment.">
+  <meta property="og:title" content="stillful — Mindfulness without distractions">
+  <meta property="og:description" content="Free meditation, breathwork and mindful stories.">
   <meta property="og:type" content="website">
 
-  <!-- Favicon (optional - add your icon) -->
-  <!-- <link rel="icon" type="image/png" href="favicon.png"> -->
+  <!-- Artwork is served from R2, same origin the app uses (config audio_base_url) -->
+  <link rel="preconnect" href="https://pub-b97afc25522a44af8d0edbe8ba2ce4e7.r2.dev" crossorigin>
 
-  <!-- Google Analytics -->
+  <!-- Google Analytics (same property as the rest of the site) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-3ZY53PF6NJ"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -32,152 +32,429 @@
     }
   </script>
 
-  <!-- Google Fonts - Crimson Pro -->
+  <!-- Crimson Pro (matches the app + the legal pages) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    /* ---------- Brand tokens — from lib/theme/stillful_colors.dart ---------- */
+    :root {
+      --page: #f5f9fc;
+      --card: #ffffff;
+      --ink: #2d2d5f;
+      --ink-soft: rgba(45, 45, 95, 0.66);
+      --ink-faint: rgba(45, 45, 95, 0.45);
+      --navy: #204176;
+      --accent: #4aaae2;
+      --accent-deep: #2e7fbf;
+      --hair: rgba(32, 65, 118, 0.14);
+      --hair-strong: rgba(32, 65, 118, 0.22);
+
+      /* hero */
+      --hero-ink: #2d2d5f;
+      --hero-ink-soft: rgba(45, 45, 95, 0.72);
+      --hero-scrim: linear-gradient(180deg,
+                      rgba(245, 249, 252, 0) 0%,
+                      rgba(245, 249, 252, 0.10) 52%,
+                      var(--page) 100%);
+
+      /* breath ball — navyBlue @ 50% alpha, like _BreathBallPainter */
+      --ball: rgba(32, 65, 118, 0.5); /* navyBlue #204176 @ 50%, like _BreathBallPainter */
+
+      /* phone frame */
+      --bezel: #1d2436;
+      --bezel-edge: #39415a;
+      --screen-bg: #eaf1f6;
     }
 
-    html {
-      min-height: 100%;
-      background: url('mobile.png') center bottom/cover no-repeat fixed;
-    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --page: #0e1627;
+        --card: #1b2742;
+        --ink: #edeff6;
+        --ink-soft: #b8c0d0;
+        --ink-faint: #7c8499;
+        --navy: #17223a;
+        --accent: #7fb0e0;
+        --accent-deep: #7fb0e0;
+        --hair: rgba(180, 192, 208, 0.14);
+        --hair-strong: rgba(180, 192, 208, 0.22);
 
-    body {
-      font-family: 'Crimson Pro', Georgia, serif;
-      text-align: center;
-      min-height: 100dvh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 20px;
-      color: #2D2D5F;
-    }
+        --hero-ink: #edeff6;
+        --hero-ink-soft: rgba(237, 239, 246, 0.82);
+        --hero-scrim: linear-gradient(180deg,
+                        rgba(14, 22, 39, 0.45) 0%,
+                        rgba(14, 22, 39, 0.72) 58%,
+                        var(--page) 100%);
+        --ball: rgba(32, 65, 118, 0.5); /* navyBlue #204176 @ 50%, like _BreathBallPainter */
 
-    @media (min-width: 768px) {
-      html {
-        background-image: url('desktop.png');
+        --bezel: #05080f;
+        --bezel-edge: #2a3145;
       }
     }
 
-    .container {
-      max-width: 400px;
-      width: 100%;
-      margin: auto 0;
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Crimson Pro', Georgia, serif;
+      background: var(--page);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
 
-    h1 {
-      font-size: 3.5rem;
-      font-weight: 500;
-      margin-bottom: 0.5rem;
-      letter-spacing: 0.08em;
-    }
+    .wrap { max-width: 620px; margin: 0 auto; }
 
-    .tagline {
-      font-size: 1.25rem;
-      font-style: italic;
-      opacity: 0.9;
-      margin-bottom: 0.5rem;
-    }
-
-    .tagline-group {
-      display: inline-block;
-      text-align: left;
-    }
-
-    .features {
-      margin-top: 1rem;
-    }
-
-    .feature-line {
-      font-size: 1.1rem;
-      opacity: 0.85;
-      margin-bottom: 0.25rem;
-    }
-
-    .feature-line::before {
-      content: "• ";
-    }
-
-    .cta {
-      font-size: 1.15rem;
-      font-weight: 500;
-      margin-top: 40px;
-      margin-bottom: 20px;
-    }
-
-    .buttons {
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative;
+      min-height: 92vh;
+      min-height: 92svh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 16px;
-      max-width: 280px;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 24px 72px;
+      background: url('mobile.png') center bottom / cover no-repeat;
+      color: var(--hero-ink);
+      overflow: hidden;
+    }
+    @media (min-width: 768px) {
+      .hero { background-image: url('desktop.png'); }
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--hero-scrim);
+      pointer-events: none;
+    }
+    .hero > * { position: relative; z-index: 1; }
+
+    .wordmark {
+      font-weight: 500;
+      font-size: 1.35rem;
+      letter-spacing: 0.14em;
+      opacity: 0.9;
+    }
+    .hero h1 {
+      font-weight: 500;
+      font-size: clamp(2.6rem, 9vw, 3.8rem);
+      line-height: 1.08;
+      letter-spacing: 0.01em;
+      margin-top: 22vh;
+      max-width: 12ch;
+      text-wrap: balance;
+    }
+    .hero .subtitle {
+      font-size: clamp(1.15rem, 3.6vw, 1.4rem);
+      font-style: italic;
+      color: var(--hero-ink-soft);
+      margin-top: 18px;
+      max-width: 26ch;
+    }
+    .scroll-cue {
+      margin-top: auto;
+      padding-top: 40px;
+      font-size: 0.85rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--hero-ink-soft);
+      opacity: 0.75;
+    }
+    .scroll-cue span { display: block; font-size: 1.3rem; margin-top: 4px; animation: nudge 2.4s ease-in-out infinite; }
+    @keyframes nudge { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
+
+    /* ---------- Selling points ---------- */
+    .points { padding: clamp(48px, 10vw, 88px) 24px 24px; }
+    .point { padding: clamp(34px, 7vw, 52px) 0; }
+    .point + .point { border-top: 1px solid var(--hair); }
+
+    .point h2 {
+      font-weight: 600;
+      font-size: clamp(1.7rem, 5.5vw, 2.3rem);
+      line-height: 1.14;
+      letter-spacing: -0.005em;
+      margin-top: 12px;
+      text-wrap: balance;
+    }
+    .point p {
+      font-size: clamp(1.12rem, 3.2vw, 1.25rem);
+      color: var(--ink-soft);
+      margin-top: 14px;
+      max-width: 40ch;
+    }
+
+    /* ---------- Phone frame ----------
+       One CSS frame wraps every visual so the screenshot, the live breath
+       ball and the moments list all read as the same device. Deliberately
+       plain — no drawn notch or side buttons, which is what makes CSS
+       frames look fake. ---------- */
+    .phone {
+      width: 100%;
+      max-width: 292px;
+      margin: 30px auto 0;
+      padding: 9px;
+      border-radius: 40px;
+      background: linear-gradient(160deg, var(--bezel-edge), var(--bezel) 34%);
+      box-shadow:
+        0 26px 60px -28px rgba(16, 22, 40, 0.55),
+        0 2px 6px rgba(16, 22, 40, 0.18);
+    }
+    .phone-screen {
+      position: relative;
+      aspect-ratio: 9 / 17.5;
+      border-radius: 32px;
+      overflow: hidden;
+      background: var(--screen-bg);
+      display: grid;
+      place-items: center;
+    }
+
+    /* Home screenshot. The source PNG still carries the iOS status bar, so it
+       is scaled slightly and pulled up to push that row out of frame — see
+       home_screenshot.png (905x1758, status bar = top 100px). */
+    .shot {
+      position: absolute;
+      width: 106.5%;
+      left: -3.25%;
+      top: -6.05%;
+    }
+
+    /* ---------- Breath ball — replicates the app breathwork screen:
+       navyBlue @ 50% over meditation_background.jpg, white label inside. ---------- */
+    .breath-screen {
+      background: url('meditation_background.jpg') center / cover no-repeat;
+    }
+    .breath-ball {
+      grid-area: 1 / 1;
+      width: 68%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: var(--ball);
+      transform: scale(0.72);
+      will-change: transform;
+    }
+    .breath-label {
+      grid-area: 1 / 1;
+      z-index: 1;
+      color: #fff;
+      font-size: 1.4rem;
+      font-weight: 400;
+      letter-spacing: 1.5px;
+      text-align: center;
+    }
+
+    /* ---------- Moments list — mirrors moments_category_page.dart:
+       image card at aspect 1.64 with the practice name centred below.
+
+       Artwork is served from R2 under images/landing/ — 600px thumbnails,
+       NOT the full-size app art under images/meditations/. The originals are
+       ~1600px and downscaling them 3.3x in the browser eats the fine linework.
+       To regenerate and re-upload after the source art changes:
+
+         sips -Z 600 -s format png \
+           assets/images/meditations/<name>.png --out <name>_600.png
+         rclone copy <dir>/ r2:stillness-app/images/landing/ --size-only
+
+       These are derived assets, so they do not auto-inherit source updates. */
+    .moments-screen {
+      display: block;
+      background: var(--page);
+      padding: 22px 14px 0;
+    }
+    .moments-head {
+      font-size: 1.15rem;
+      font-weight: 600;
+      text-align: center;
+      color: var(--ink);
+      margin-bottom: 14px;
+    }
+    .m-card {
+      background: var(--card);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 8px -2px rgba(20, 26, 45, 0.18);
+    }
+    .m-card img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1.64;
+      object-fit: cover;
+      /* the linework is drawn on white — keep it white in dark mode too */
+      background: #fff;
+    }
+    .m-card span {
+      display: block;
+      text-align: center;
+      font-size: 0.92rem;
+      color: var(--ink);
+      padding: 7px 8px 10px;
+    }
+
+    /* ---------- Value list ---------- */
+    .free-list {
+      list-style: none;
+      margin: 22px 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .free-list li {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      font-size: clamp(1.12rem, 3.2vw, 1.25rem);
+    }
+    .free-list li::before {
+      content: "✓";
+      color: var(--accent-deep);
+      font-weight: 600;
+      font-size: 0.95em;
+    }
+
+    /* ---------- Alternating two-column layout on wide screens ----------
+       Each point becomes text | visual, and the sides swap every section so
+       the eye has a reason to keep going. Mobile stays single column. */
+    @media (min-width: 900px) {
+      .wrap { max-width: 1080px; }
+      .points { padding-top: clamp(64px, 8vw, 104px); }
+      .point {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(40px, 6vw, 80px);
+        align-items: center;
+        padding: clamp(56px, 6vw, 76px) 0;
+      }
+      .point:nth-of-type(even) .point-visual { order: -1; }
+      .point h2 { margin-top: 0; }
+      .phone { margin-top: 0; }
+    }
+
+    /* ---------- Download ---------- */
+    .download {
+      padding: clamp(48px, 10vw, 80px) 24px clamp(40px, 8vw, 64px);
+      text-align: center;
+    }
+    .badges {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
       margin: 0 auto;
     }
+    .badges a { display: block; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .badges a:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18); }
+    .badges a:active { transform: translateY(0); }
+    .badges a:focus-visible { outline: 2px solid var(--accent-deep); outline-offset: 4px; border-radius: 8px; }
+    .badges img { height: 48px; width: auto; display: block; }
 
-    .buttons a {
-      display: block;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .buttons a:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-    }
-
-    .buttons a:active {
-      transform: translateY(0);
-    }
-
-    .buttons img {
-      width: 180px;
-      height: auto;
-    }
-
+    /* ---------- Footer ---------- */
     .footer {
-      margin-top: 40px;
-      padding: 24px 20px 28px;
-      font-size: 1rem;
-      opacity: 0.8;
+      text-align: center;
+      padding: 26px 20px 34px;
+      font-size: 0.95rem;
+      color: var(--ink-soft);
     }
+    .footer a { color: var(--ink-soft); text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+    .footer .separator { margin: 0 8px; opacity: 0.6; }
 
-    .footer a {
-      color: #2D2D5F;
-      text-decoration: none;
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .scroll-cue span, .breath-ball { animation: none !important; }
     }
-
-    .footer a:hover {
-      text-decoration: underline;
-    }
-
-    .footer .separator {
-      margin: 0 8px;
-    }
-
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>stillful</h1>
-    <div class="tagline-group">
-      <p class="tagline">free meditation, sleep stories and breathwork</p>
-      <div class="features">
-        <p class="feature-line">Guided when you need it</p>
-        <p class="feature-line">Quiet when you don&rsquo;t</p>
-        <p class="feature-line">Breathwork to settle fast</p>
-        <p class="feature-line">Mindful stories for sleep</p>
+
+  <!-- ============ HERO ============ -->
+  <header class="hero">
+    <p class="wordmark">stillful</p>
+    <h1>Mindfulness without distractions</h1>
+    <p class="subtitle">Free meditation, breathwork and mindful stories</p>
+    <p class="scroll-cue">More<span aria-hidden="true">↓</span></p>
+  </header>
+
+  <!-- ============ SELLING POINTS ============ -->
+  <main class="points wrap">
+
+    <section class="point">
+      <div class="point-text">
+        <h2>Practice without distractions</h2>
+        <p>No ads or huge libraries to scroll through</p>
       </div>
-    </div>
+      <div class="point-visual">
+        <div class="phone">
+          <div class="phone-screen">
+            <img class="shot" src="home_screenshot.png" alt="The stillful home screen">
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <p class="cta"></p>
+    <section class="point">
+      <div class="point-text">
+        <h2>Breathwork makes meditation easier</h2>
+        <p>Reconnect with your body and your mind will follow</p>
+      </div>
+      <div class="point-visual">
+        <div class="phone" aria-hidden="true">
+          <div class="phone-screen breath-screen">
+            <div class="breath-ball" id="breathBall"></div>
+            <div class="breath-label" id="breathLabel">inhale</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <div class="buttons">
+    <section class="point">
+      <div class="point-text">
+        <h2>Get more for free</h2>
+        <ul class="free-list">
+          <li>Free guided meditations each week</li>
+          <li>Free mindful stories</li>
+          <li>Breathwork when you want</li>
+        </ul>
+      </div>
+      <div class="point-visual">
+        <div class="phone">
+          <div class="phone-screen moments-screen">
+            <p class="moments-head">Everyday life</p>
+            <div class="m-card">
+              <img src="https://pub-b97afc25522a44af8d0edbe8ba2ce4e7.r2.dev/images/landing/quiet_option_v1_600.png" alt="" loading="lazy">
+              <span>the quiet option</span>
+            </div>
+            <div class="m-card">
+              <img src="https://pub-b97afc25522a44af8d0edbe8ba2ce4e7.r2.dev/images/landing/returning_v1_600.png" alt="" loading="lazy">
+              <span>returning</span>
+            </div>
+            <div class="m-card">
+              <img src="https://pub-b97afc25522a44af8d0edbe8ba2ce4e7.r2.dev/images/landing/small_moments_v2_600.png" alt="" loading="lazy">
+              <span>small moments</span>
+            </div>
+            <div class="m-card">
+              <img src="https://pub-b97afc25522a44af8d0edbe8ba2ce4e7.r2.dev/images/landing/consistency_v3_600.png" alt="" loading="lazy">
+              <span>mindfulness through consistency</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ DOWNLOAD ============ -->
+  <section class="download">
+    <div class="badges">
       <a href="https://apps.apple.com/us/app/stillful/id6743396382" onclick="trackStoreClick('apple')">
         <img src="Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" alt="Download on the App Store">
       </a>
@@ -185,16 +462,60 @@
         <img src="GetItOnGooglePlay_Badge_Web_color_English.svg" alt="Get it on Google Play">
       </a>
     </div>
+  </section>
 
-    <footer class="footer">
-    <a href="about.html">About Us</a>
+  <footer class="footer">
+    <a href="/about">About Us</a>
     <span class="separator">&middot;</span>
     <a href="/terms">Terms</a>
     <span class="separator">&middot;</span>
     <a href="/privacy">Privacy</a>
     <span class="separator">&middot;</span>
     <a href="/stillful_support">Support</a>
-    </footer>
-  </div>
+  </footer>
+
+  <script>
+    // ---------- Breath ball: resonant cadence (5.5s inhale / 5.5s exhale),
+    // holds omitted by design. Replicates lib/widgets/breath_ball.dart:
+    // radius 0.36w -> 0.5w == scale 0.72 -> 1.0, eased with easeInOut, with
+    // the white phase label centered inside the ball. ----------
+    (function () {
+      var ball = document.getElementById('breathBall');
+      var label = document.getElementById('breathLabel');
+      if (!ball) return;
+
+      var IN = 5500, EX = 5500;
+      var CYCLE = IN + EX; // 11000ms
+      var MIN = 0.72, MAX = 1.0;
+
+      function easeInOut(x) {
+        return x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2;
+      }
+
+      // returns [phaseLabel, fill 0..1]
+      function state(t) {
+        if (t < IN) return ['inhale', t / IN];
+        return ['exhale', 1 - (t - IN) / EX];
+      }
+
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        ball.style.transform = 'scale(' + ((MIN + MAX) / 2).toFixed(3) + ')';
+        label.textContent = 'inhale';
+        return;
+      }
+
+      var start = null;
+      function frame(now) {
+        if (start === null) start = now;
+        var t = (now - start) % CYCLE;
+        var s = state(t);
+        var scale = MIN + (MAX - MIN) * easeInOut(Math.max(0, Math.min(1, s[1])));
+        ball.style.transform = 'scale(' + scale.toFixed(4) + ')';
+        if (label.textContent !== s[0]) label.textContent = s[0];
+        requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    })();
+  </script>
 </body>
 </html>
