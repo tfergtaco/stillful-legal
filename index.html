@@ -68,32 +68,6 @@
       --screen-bg: #eaf1f6;
     }
 
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --page: #0e1627;
-        --card: #1b2742;
-        --ink: #edeff6;
-        --ink-soft: #b8c0d0;
-        --ink-faint: #7c8499;
-        --navy: #17223a;
-        --accent: #7fb0e0;
-        --accent-deep: #7fb0e0;
-        --hair: rgba(180, 192, 208, 0.14);
-        --hair-strong: rgba(180, 192, 208, 0.22);
-
-        --hero-ink: #edeff6;
-        --hero-ink-soft: rgba(237, 239, 246, 0.82);
-        --hero-scrim: linear-gradient(180deg,
-                        rgba(14, 22, 39, 0.45) 0%,
-                        rgba(14, 22, 39, 0.72) 58%,
-                        var(--page) 100%);
-        --ball: rgba(32, 65, 118, 0.5); /* navyBlue #204176 @ 50%, like _BreathBallPainter */
-
-        --bezel: #05080f;
-        --bezel-edge: #2a3145;
-      }
-    }
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     html { scroll-behavior: smooth; }
@@ -287,8 +261,7 @@
       width: 100%;
       aspect-ratio: 1.64;
       object-fit: cover;
-      /* the linework is drawn on white — keep it white in dark mode too */
-      background: #fff;
+      background: #fff; /* the linework is drawn on white */
     }
     .m-card span {
       display: block;
