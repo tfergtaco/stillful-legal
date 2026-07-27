@@ -94,7 +94,7 @@
       justify-content: center;
       text-align: center;
       padding: 60px 24px 72px;
-      background: url('mobile.png') center bottom / cover no-repeat;
+      background: url('mobile_v2.jpg') center bottom / cover no-repeat;
       color: var(--hero-ink);
       overflow: hidden;
     }
@@ -121,7 +121,11 @@
       font-size: clamp(2.6rem, 9vw, 3.8rem);
       line-height: 1.08;
       letter-spacing: 0.01em;
-      margin-top: 22vh;
+      /* svh so this is measured against the same viewport as the hero's
+         min-height above — plain vh resolves to the LARGE viewport, which
+         on mobile overshoots inside an svh-sized box. */
+      margin-top: 12vh;
+      margin-top: 12svh;
       max-width: 12ch;
       text-wrap: balance;
     }
@@ -352,8 +356,8 @@
   <!-- ============ HERO ============ -->
   <header class="hero">
     <p class="wordmark">stillful</p>
-    <h1>Mindfulness without distractions</h1>
-    <p class="subtitle">Free meditation, breathwork and mindful stories</p>
+    <h1>A quiet place to come back to yourself</h1>
+    <p class="subtitle">Guided meditations, breathwork and mindful stories. Free and without ads.</p>
     <p class="scroll-cue">More<span aria-hidden="true">↓</span></p>
   </header>
 
@@ -362,8 +366,8 @@
 
     <section class="point">
       <div class="point-text">
-        <h2>Practice without distractions</h2>
-        <p>No ads or huge libraries to scroll through</p>
+        <h2>Less scrolling. More stillness.</h2>
+        <p>No endless libraries or ads to distract you. Just simple tools to practice mindfulness.</p>
       </div>
       <div class="point-visual">
         <div class="phone">
@@ -376,8 +380,8 @@
 
     <section class="point">
       <div class="point-text">
-        <h2>Breathwork makes meditation easier</h2>
-        <p>Reconnect with your body and your mind will follow</p>
+        <h2>Start with the breath</h2>
+        <p>Reconnecting with your breath makes it easier for your mind to settle.</p>
       </div>
       <div class="point-visual">
         <div class="phone" aria-hidden="true">
@@ -393,8 +397,8 @@
       <div class="point-text">
         <h2>Get more for free</h2>
         <ul class="free-list">
-          <li>Free guided meditations each week</li>
-          <li>Free mindful stories</li>
+          <li>New guided meditations each week</li>
+          <li>Mindful stories for sleep</li>
           <li>Breathwork when you want</li>
         </ul>
       </div>
