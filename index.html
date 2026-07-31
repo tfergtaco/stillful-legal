@@ -30,10 +30,11 @@
         'traffic_source': source
       });
       // Meta: outbound store click is the closest thing to a conversion this
-      // page can see — the install itself happens off-site. Guarded because
-      // content blockers routinely stop fbevents.js from ever defining fbq.
+      // page can see — the install itself happens off-site. ViewContent rather
+      // than Lead, which would force a different campaign objective. Guarded
+      // because content blockers routinely stop fbevents.js defining fbq.
       if (typeof fbq === 'function') {
-        fbq('track', 'Lead', {
+        fbq('track', 'ViewContent', {
           content_name: store,
           content_category: 'store_click'
         });
