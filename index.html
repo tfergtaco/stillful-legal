@@ -6,10 +6,22 @@
   <title>stillful — Mindfulness without distractions</title>
   <meta name="description" content="Mindfulness without distractions. Free meditation, breathwork and mindful stories. Download stillful on iOS and Android.">
 
-  <!-- Open Graph / Social sharing -->
+  <!-- Open Graph / Social sharing.
+       og:image must be declared, not inferred — without it the scraper picks
+       an <img> from the body (it was choosing the portrait home_screenshot,
+       which crops badly into the feed card). og:url keeps utm-tagged ad links
+       from fragmenting into separate objects. Versioned filename because
+       Facebook caches the image aggressively. -->
   <meta property="og:title" content="stillful — Mindfulness without distractions">
   <meta property="og:description" content="Free meditation, breathwork and mindful stories.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://stillful.app/">
+  <meta property="og:image" content="https://stillful.app/og_image_v1.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="A quiet place to come back to yourself">
+  <meta name="twitter:card" content="summary_large_image">
 
   <!-- Artwork is served from R2, same origin the app uses (config audio_base_url) -->
   <link rel="preconnect" href="https://pub-b97afc25522a44af8d0edbe8ba2ce4e7.r2.dev" crossorigin>
