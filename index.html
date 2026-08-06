@@ -226,6 +226,20 @@
       top: -6.05%;
     }
 
+    /* ---------- Siri lock screen ----------
+       Goes in the same .phone bezel as the other visuals. The capture is
+       941x1672 (0.563) against the frame's 9/17.5 (0.514) — cover would crop
+       ~40px off each side, which is exactly where Siri's edge glow lives, so
+       the screen takes the capture's own ratio instead. That makes this phone
+       ~8% shorter than the others; losing the glow would cost more. ---------- */
+    .siri-screen { aspect-ratio: 941 / 1672; }
+    .siri-shot {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
     /* ---------- Breath ball — replicates the app breathwork screen:
        navyBlue @ 50% over meditation_background.jpg, white label inside. ---------- */
     .breath-screen {
@@ -407,7 +421,7 @@
     <section class="point">
       <div class="point-text">
         <h2>Less scrolling. More stillness.</h2>
-        <p>No endless libraries or ads to distract you. Just simple tools to practice mindfulness.</p>
+        <p>No huge libraries or ads to distract you. Simple tools to practice mindfulness.</p>
       </div>
       <div class="point-visual">
         <div class="phone">
@@ -421,13 +435,29 @@
     <section class="point">
       <div class="point-text">
         <h2>Start with the breath</h2>
-        <p>Reconnecting with your breath makes it easier for your mind to settle.</p>
+        <p>Reconnect with your breath to settle your mind.</p>
       </div>
       <div class="point-visual">
         <div class="phone" aria-hidden="true">
           <div class="phone-screen breath-screen">
             <div class="breath-ball" id="breathBall"></div>
             <div class="breath-label" id="breathLabel">inhale</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="point">
+      <div class="point-text">
+        <h2>Meditate without touching your phone</h2>
+        <p>Avoid distractions, ask Siri to play your meditation. Android coming soon.</p>
+      </div>
+      <div class="point-visual">
+        <div class="phone">
+          <div class="phone-screen siri-screen">
+            <img class="siri-shot" src="siri_lockscreen_v1.png"
+                 alt="An iPhone lock screen after asking Siri to start a meditation, playing “returning to the body”"
+                 loading="lazy">
           </div>
         </div>
       </div>
